@@ -1,8 +1,8 @@
 #!/bin/bash
 source ./scripts/cfg/test.sh
-main_dir=$directory_name
-mkdir $(pwd)/$main_dir
-cd $main_dir
+main_dir=$(pwd)
+# mkdir $(pwd)/$main_dir
+# cd $main_dir
 
 
 function create_package {
@@ -12,7 +12,7 @@ function create_package {
     #echo $(pwd)
 
     mkdir $pkg_name
-    cp -r ../template_pkg/* ./$pkg_name
+    cp -r ./template_pkg/* ./$pkg_name
     
     cd ./$pkg_name/src/
     mv template_pkg_node_name.cpp "${pkg_name}.cpp"
