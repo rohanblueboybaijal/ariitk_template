@@ -1,15 +1,18 @@
 #!/bin/bash
 source ./scripts/cfg/test.sh
-main_dir=$(pwd)
+main_dir=$directory_name
+mkdir $(pwd)/$main_dir
+cd $main_dir
 
 
 function create_package {
     #echo "Enter name of the package"
-    cd $main_dir
+    # mkdir $(pwd)/$main_dir
+    # cd $main_dir
     #echo $(pwd)
 
     mkdir $pkg_name
-    cp -r ./template_pkg/* ./$pkg_name
+    cp -r ../template_pkg/* ./$pkg_name
     
     cd ./$pkg_name/src/
     mv template_pkg_node_name.cpp "${pkg_name}.cpp"
@@ -19,12 +22,26 @@ function create_package {
     mv  template_pkg ${pkg_name}
     cd ./$pkg_name
     mv template_pkg_node_name.hpp "${pkg_name}.hpp"
+
+    cd ../..
+    sed -i "s/template_pkg_name/$pkg_name/" CMakeLists.txt launch/default.launch
+    sed -i "s/node_name/$node_name/" CMakeLists.txt
+    sed -i "s/template_pkg_node_name/$pkg_name/" CMakeLists.txt launch/default.launch src/${pkg_name}.cpp
+    sed -i "s/template_pkg_node/$node_name/" launch/default.launch src/${pkg_name}.cpp
+    sed -i "s/template_pkg/$pkg_name/" src/${pkg_name}.cpp
+    sed -i "s/template_pkg_name/$pkg_name/" src/${pkg_name}.cpp include/${pkg_name}/${pkg_name}.hpp
+
+    cd ../
+
 }
 
 # create_package
 
-for name in ${pkg_names[@]}
+length=${#pkg_names[@]}
+for ((counter=0; counter<$length; counter++))
 do 
-    pkg_name=$name
+    pkg_name=${pkg_names[$counter]}
+    node_name=${node_names[$counter]}
+    dependencies=${dependencies[$counter]}
     create_package
 done
