@@ -26,10 +26,17 @@ function create_package {
     cd ../..
     sed -i "s/template_pkg_name/$pkg_name/" CMakeLists.txt launch/default.launch
     sed -i "s/node_name/$node_name/" CMakeLists.txt
-    sed -i "s/template_pkg_node_name/$pkg_name/" CMakeLists.txt launch/default.launch src/${pkg_name}.cpp
+    sed -i "s/template_pkg_node_name/$pkg_name/" CMakeLists.txt launch/default.launch src/${pkg_name}_node.cpp
     sed -i "s/template_pkg_node/$node_name/" launch/default.launch src/${pkg_name}.cpp
     sed -i "s/template_pkg/$pkg_name/" src/${pkg_name}.cpp
     sed -i "s/template_pkg_name/$pkg_name/" src/${pkg_name}.cpp include/${pkg_name}/${pkg_name}.hpp
+
+    x=15
+    for depend in ${depends[@]}
+    do
+        sed -i "${x}i \ \ \ \ <depend>${depend}</depend>" package.xml
+        ((x++))
+    done
 
     cd ../
 
@@ -42,6 +49,6 @@ for ((counter=0; counter<$length; counter++))
 do 
     pkg_name=${pkg_names[$counter]}
     node_name=${node_names[$counter]}
-    dependencies=${dependencies[$counter]}
+    depends=${dependencies[$counter]}
     create_package
 done
