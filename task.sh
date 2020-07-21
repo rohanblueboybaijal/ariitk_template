@@ -1,8 +1,12 @@
 #!/bin/bash
+source ./scripts/cfg/test.sh
+main_dir=$(pwd)
+
 
 function create_package {
-    echo "Enter name of the package"
-    read pkg_name
+    #echo "Enter name of the package"
+    cd $main_dir
+    #echo $(pwd)
 
     mkdir $pkg_name
     cp -r ./template_pkg/* ./$pkg_name
@@ -17,4 +21,10 @@ function create_package {
     mv template_pkg_node_name.hpp "${pkg_name}.hpp"
 }
 
-create_package
+# create_package
+
+for name in ${pkg_names[@]}
+do 
+    pkg_name=$name
+    create_package
+done
