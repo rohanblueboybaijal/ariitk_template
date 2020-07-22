@@ -1,0 +1,29 @@
+#!/bin/bash
+des=$(find ~ -type d -name "ariitk_template")
+
+function make_lib {
+
+    cd include/
+    pkg_name=$(ls)
+    cd ../
+    cp -r ${des}/template_pkg/include/template_pkg/template_pkg_node_name.hpp ./include/$pkg_name/
+    cp -r ${des}/template_pkg/src/template_pkg_node_name.cpp ./src/
+    
+    cd ./src/
+    mv template_pkg_node_name.cpp "${lib_name}.cpp"
+
+    cd ../include/$pkg_name
+
+    mv template_pkg_node_name.hpp "${lib_name}.hpp"
+
+    cd ../..
+    sed -i "s/template_pkg_node_name/$pkg_name/" src/${lib_name}.cpp
+    sed -i "s/template_pkg_node/$lib_name/" src/${lib_name}.cpp
+    sed -i "s/template_pkg_name/$pkg_name/" src/${lib_name}.cpp  src/${lib_name}.cpp include/${pkg_name}/${pkg_name}.hpp
+    sed -i "s/template_pkg/$pkg_name/" src/${lib_name}.cpp 
+
+
+}
+
+lib_name="$1"
+make_lib

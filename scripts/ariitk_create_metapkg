@@ -1,5 +1,5 @@
 #!/bin/bash
-des=$(find ~ -name "ariitk_template")
+des=$(find ~ -type d -name "ariitk_template")
 cp -r ${des}/scripts/cfg/config.sh ${des}/config.sh
 vim ${des}/config.sh
 source ${des}/config.sh
