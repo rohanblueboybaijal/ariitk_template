@@ -1,6 +1,5 @@
 #!/bin/bash
-des=$(find . -name "ariitk_template")
-des="$(pwd)/${des}"
+des=$(find ~ -name "ariitk_template")
 cp -r ${des}/scripts/cfg/config.sh ${des}/config.sh
 vim ${des}/config.sh
 source ${des}/config.sh
@@ -30,11 +29,11 @@ function create_package {
 
     cd ../..
     sed -i "s/template_pkg_name/$pkg_name/" CMakeLists.txt launch/default.launch
-    sed -i "s/node_name/$node_name/" CMakeLists.txt
-    sed -i "s/template_pkg_node_name/$pkg_name/" CMakeLists.txt launch/default.launch src/${pkg_name}_node.cpp
+    sed -i "s/template_pkg_node_name/$pkg_name/" CMakeLists.txt launch/default.launch src/${pkg_name}_node.cpp src/${pkg_name}.cpp
     sed -i "s/template_pkg_node/$node_name/" launch/default.launch src/${pkg_name}.cpp
-    sed -i "s/template_pkg/$pkg_name/" src/${pkg_name}.cpp
-    sed -i "s/template_pkg_name/$pkg_name/" src/${pkg_name}.cpp include/${pkg_name}/${pkg_name}.hpp
+    sed -i "s/template_pkg_name/$pkg_name/" src/${pkg_name}.cpp include/${pkg_name}/${pkg_name}.hpp package.xml src/${pkg_name}_node.cpp src/${pkg_name}.cpp
+    sed -i "s/template_pkg/$pkg_name/" src/${pkg_name}.cpp src/${pkg_name}_node.cpp
+    sed -i "s/node_name/$node_name/g" CMakeLists.txt
 
     x=15
     for depend in ${depends[@]}

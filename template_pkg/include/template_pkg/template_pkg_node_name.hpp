@@ -2,7 +2,7 @@
 
 #include <ros/ros.h>
 
-namespace ariitk::tempate_pkg_name {
+namespace ariitk::template_pkg_name {
 class TemplatePkg {
     private:
         /* data */

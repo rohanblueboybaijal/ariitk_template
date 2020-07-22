@@ -4,7 +4,7 @@ using namespace ariitk::template_pkg_name;
 
 int main(int argc, char** argv) {
     ros::init(argc, argv, "template_pkg_node_name_node");
-    ros::nodeHandle nh;
+    ros::NodeHandle nh;
 
     TemplatePkg obj;
 

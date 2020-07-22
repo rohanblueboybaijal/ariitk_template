@@ -2,15 +2,16 @@
 
 namespace ariitk::template_pkg_name {
 
-TemplatePkg::templatePkg() {
+TemplatePkg::TemplatePkg() {
 }
 
 TemplatePkg::~TemplatePkg() {
 }
 
-TemplatePkg::run() {
+void TemplatePkg::run() {
 }
 
-TemplatePkg::init() {
+void TemplatePkg::init(ros::NodeHandle&) {
 }
+
 } //namesapce ariitk::template_pkg_name
