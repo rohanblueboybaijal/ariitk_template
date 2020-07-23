@@ -17,7 +17,6 @@ repos[mav_trajectory_generation]=git@github.com:ethz-asl/mav_trajectory_generati
 function exists {
     for key in "${!repos[@]}"; do
         if [ "$1" == "$key" ]; then
-            echo "exists"
             return 0
         fi
     done
