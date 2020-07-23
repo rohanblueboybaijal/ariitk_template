@@ -1,22 +1,22 @@
 #!/bin/bash
 
-if [ ! -f ~/.bash_profiles ]; then
-    touch ~/.bash_profiles    
+if [ ! -f ~/.bash_profile ]; then
+    touch ~/.bash_profile    
 fi
 
 if [ ! -d ~/bin ]; then
     mkdir ~/bin
 fi
 
-if [[ ! $(grep -x "export PATH=$PATH":$HOME/bin"" ~/.bash_profiles) ]]; then
-  echo -e "export PATH=$PATH":$HOME/bin"" >> ~/.bash_profiles
+if [[ ! $(grep -x "export PATH=$PATH":$HOME/bin"" ~/.bash_profile) ]]; then
+  echo -e "export PATH=$PATH":$HOME/bin"" >> ~/.bash_profile
 fi
 
-if [[ ! $(grep -x "source ~/.bash_profiles" ~/.bashrc) ]]; then
-  echo -e "source ~/.bash_profiles" >> ~/.bashrc
+if [[ ! $(grep -x "source ~/.bash_profile" ~/.bashrc) ]]; then
+  echo -e "source ~/.bash_profile" >> ~/.bashrc
 fi
 
-source ~/.bash_profiles
+source ~/.bash_profile
 
 cp -r ./scripts/ariitk_create_metapkg ~/bin/
 cp -r ./scripts/ariitk_create_pkg ~/bin/
