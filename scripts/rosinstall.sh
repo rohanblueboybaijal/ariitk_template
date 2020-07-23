@@ -14,7 +14,14 @@ repos[ceres_catkin]=git@github.com:ethz-asl/ceres_catkin.git
 repos[voxblox]=git@github.com:ethz-asl/voxblox.git
 repos[mav_trajectory_generation]=git@github.com:ethz-asl/mav_trajectory_generation.git
 
-str=catkin_
+str=catkin_simple
+file=./dependencies.rosinstall
+if test -f "$file"; then
+    echo "$file  exists"
+else 
+    touch dependencies.rosinstall
+    echo "Created $file"
+fi
 
 # for key in "${!repos[@]}"; do
 #     if [ "$str" == "$key" ]; then
@@ -33,6 +40,7 @@ function exists {
 
 if [ $( exists $str ) ]; then
     echo "OH yea"
+    echo - git: {local-name: $str, uri: "'${repos[$str]}'"}  >> ./dependencies.rosinstall
 else 
     echo "Oh NO"
 fi
