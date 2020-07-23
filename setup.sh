@@ -21,7 +21,9 @@ source ~/.bash_profile
 cp -r ./scripts/ariitk_create_metapkg ~/bin/
 cp -r ./scripts/ariitk_create_pkg ~/bin/
 cp -r ./scripts/ariitk_create_lib ~/bin/
+cp -r ./scripts/ariitk_rosinstall ~/bin/
 
 chmod +x ~/bin/ariitk_create_metapkg
 chmod +x ~/bin/ariitk_create_pkg
 chmod +x ~/bin/ariitk_create_lib
+chmod +x ~/bin/ariitk_rosinstall
