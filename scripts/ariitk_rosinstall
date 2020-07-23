@@ -38,7 +38,7 @@ source depend_config.sh
 
 for repo in ${repositories[@]}
 do
-    if [ $( exists $repo ) ]; then
+    if [[ -v repos[${repo}] ]]; then
         echo - git: {local-name: $repo, uri: "'${repos[$repo]}'"}  >> ./dependencies.rosinstall
     else
         echo "Enter the github link for $repo :"
