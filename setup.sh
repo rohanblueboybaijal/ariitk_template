@@ -13,7 +13,7 @@ if [[ ! $(grep -x "export PATH=$PATH":$HOME/bin"" ~/.bash_profile) ]]; then
 fi
 
 if [[ ! $(grep -x "source ~/.bash_profile" ~/.bashrc) ]]; then
-  echo -e "source ~/.bash_profile" >> ~/.bashrc
+  sed -i "1i source ~/.bash_profile" ~/.bashrc
 fi
 
 source ~/.bash_profile
