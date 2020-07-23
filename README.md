@@ -7,11 +7,13 @@ Template repository for ease of setting up a new project
 run `sudo ./setup.sh` to install this package.
 
 For making meta_pkg , go into the src folder of your workspace-
-
-run `ariitk_create_metapkg`
-
+run `ariitk_create_metapkg`   
 change the template file according to your need and press `:x` to save changes.
 
-For making simple_pkg , go into the src folder of your workspace-
+For making simple_pkg , go into the src folder of your workspace-  
+run  `ariitk_create_pkg <pkg_name> <node_name> <dependencies>`   
 
-run  `ariitk_create_pkg pkg_name node_name dependencies`
+For creating a dependencies.rosinstall, go into the package.  
+run ```ariitk_rosinstall``` : vim editor will open a file with ```repositories=""```   
+Fill in the common name of the repositories you want. Some will already be available by default, for others you will get a prompt to set the github link.   
+The list of common repos and their links is available inside ariitk_rosinstall.
