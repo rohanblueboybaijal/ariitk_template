@@ -7,7 +7,7 @@ cp -r ${des}/scripts/cfg/config.sh ${des}/config.sh
 vim ${des}/config.sh
 source ${des}/config.sh
 rm -rf ${des}/config.sh ${des}/config.sh.save 
-cd ${directory_path} && mkdir -p ${workspace_name}/src && catkin init > /dev/null 2>&1 && cd src
+cd ${directory_path} && mkdir -p ${workspace_name}/src && cd ${workspace_name} && catkin init > /dev/null 2>&1 && cd src
 main_dir=${directory_name}
 mkdir $(pwd)/$main_dir
 cd $main_dir
@@ -63,6 +63,6 @@ git add . > /dev/null 2>&1
 git commit -m "initial commit" > /dev/null 2>&1
 git push origin master > /dev/null 2>&1
 
-rm -rf ~/.ariitk_template
+rm -rf ~/.ariitk
 
 
