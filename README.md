@@ -17,3 +17,13 @@ For creating a dependencies.rosinstall, go into the package.
 run ```ariitk_rosinstall``` : vim editor will open a file with ```repositories=""```   
 Fill in the common name of the repositories you want. Some will already be available by default, for others you will get a prompt to set the github link.   
 The list of common repos and their links is available inside ariitk_rosinstall.
+
+# Without installation
+
+
+Use command `wget https://tinyurl.com/ariitk && chmod +x ariitk && ./ariitk && rm -rf ariitk` to create a meta package and setup git remote accordingly.You do not need to clone this package to run this command.
+
+
+
+
+
