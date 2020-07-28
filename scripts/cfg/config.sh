@@ -1,5 +1,5 @@
 #!/bin/sh
-directory_path="~/ros/"                                                  #path where your workspace should be created
+directory_path="$HOME/ros/"                                                  #path where your workspace should be created
 workspace_name="ariitk_ws"                                               #name of your workspace
 directory_name="ariitk_temp_pkg"                                         #name of your main_directory
 pkg_names=('temp_pkg1' 'temp_pkg2' 'temp_pkg3')                          #name of pkgs you want to create
