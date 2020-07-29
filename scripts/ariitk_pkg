@@ -12,6 +12,7 @@ main_dir=${directory_name}
 mkdir $(pwd)/$main_dir
 cd $main_dir
 
+printf 'no' | gh repo create ${main_dir} --public > /dev/null 2>&1
 git init > /dev/null 2>&1
 git remote add origin git@github.com:$(git config user.name)/${main_dir}.git > /dev/null 2>&1
 
