@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 declare -A repos
 repos[catkin_simple]=git@github.com:catkin/catkin_simple.git

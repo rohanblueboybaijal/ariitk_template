@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 des=$(find ~ -type d -name "ariitk_template")
 # des="$(pwd)/${des}"
 

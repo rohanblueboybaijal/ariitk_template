@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 git clone --branch scripts git@github.com:rohanblueboybaijal/ariitk_template.git ~/.ariitk/ > /dev/null 2>&1
 
 des="$HOME/.ariitk"
 cp -r ${des}/scripts/cfg/config.sh ${des}/config.sh
 vim ${des}/config.sh
-source ${des}/config.sh
+. ${des}/config.sh
 rm -rf ${des}/config.sh ${des}/config.sh.save 
 cd ${directory_path} && mkdir -p ${workspace_name}/src && cd ${workspace_name} && catkin init > /dev/null 2>&1 && cd src
 main_dir=${directory_name}

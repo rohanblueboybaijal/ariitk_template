@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 source ./scripts/cfg/test.sh
 main_dir=$(pwd)
 # mkdir $(pwd)/$main_dir
