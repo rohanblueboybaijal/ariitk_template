@@ -1,7 +1,7 @@
 #!/bin/bash
 
-chmod +x $(pwd)/scripts/cfg/config.sh
-source $(pwd)/scripts/cfg/config.sh
+chmod +x $(pwd)/../cfg/config.sh
+source $(pwd)/../cfg/config.sh
 
 echo -e "directory_name = $directory_name"
 echo -e "pkg_names = ${pkg_names[@]}"
