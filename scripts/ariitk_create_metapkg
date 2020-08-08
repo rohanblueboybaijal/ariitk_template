@@ -1,20 +1,40 @@
 #!/usr/bin/env bash
 des=$(find ~ -type d -name "ariitk_template")
-cp -r ${des}/scripts/cfg/config.sh ${des}/config.sh
-vim ${des}/config.sh
+source ~/.bash_profile
+cp -r ${des}/scripts/cfg/config.${ariitk_config_file_type} ${des}/config.${ariitk_config_file_type}
+vim ${des}/config.${ariitk_config_file_type}
+if [[ ${ariitk_config_file_type} == "yaml" ]]; then
+    python3 ${des}/scripts/parse_yaml.py ${des}
+    rm -rf ${des}/config.${ariitk_config_file_type}
+fi
+
 source ${des}/config.sh
-rm -rf ${des}/config.sh ${des}/config.sh.save
+rm -rf ${des}/config.sh
+echo "cd $directory_path"
+
+if [ -d ${directory_path}${workspace_name} ]; then 
+    echo "error: directory ${directory_path}${workspace_name} already exists."
+    exit 
+fi
+
+cd ${directory_path} && mkdir -p ${workspace_name}/src && cd ${workspace_name} && catkin init > /dev/null 2>&1 && cd src
 main_dir=${directory_name}
 mkdir $(pwd)/$main_dir
 cd $main_dir
 
+function get_class_name {
+    class_name=""
+    flag=1
+    for ((i=0; i<${#pkg_name}; i++))
+    do
+    str=${pkg_name:${i}:1}
+    if [ ${str} == "_" ]; then flag=1; continue; fi
+    if [ ${flag} -eq 1 ]; then class_name=${class_name}${str^^}; flag=0; else class_name=${class_name}${str}; fi
+    done
+}
 
 function create_package {
-    #echo "Enter name of the package"
-    # mkdir $(pwd)/$main_dir
-    # cd $main_dir
-    #echo $(pwd)
-
+    
     mkdir $pkg_name
     cp -r ${des}/template_pkg/* ./$pkg_name
     
@@ -27,20 +47,29 @@ function create_package {
     cd ./$pkg_name
     mv template_pkg_node_name.hpp "${pkg_name}.hpp"
 
+    
+    get_class_name
+
     cd ../..
-    sed -i "s/template_pkg_name/$pkg_name/" CMakeLists.txt launch/default.launch
-    sed -i "s/template_pkg_node_name/$pkg_name/" CMakeLists.txt launch/default.launch src/${pkg_name}_node.cpp src/${pkg_name}.cpp
-    sed -i "s/template_pkg_node/$node_name/" launch/default.launch src/${pkg_name}.cpp
-    sed -i "s/template_pkg_name/$pkg_name/" src/${pkg_name}.cpp include/${pkg_name}/${pkg_name}.hpp package.xml src/${pkg_name}_node.cpp src/${pkg_name}.cpp
-    sed -i "s/template_pkg/$pkg_name/" src/${pkg_name}.cpp src/${pkg_name}_node.cpp
-    sed -i "s/node_name/$node_name/g" CMakeLists.txt
+
+    sed  -i  "s/template_pkg_name/$pkg_name/"       CMakeLists.txt         launch/default.launch
+    sed  -i  "s/template_pkg_node_name/$pkg_name/"  CMakeLists.txt         launch/default.launch                             src/${pkg_name}_node.cpp src/${pkg_name}.cpp
+    sed  -i  "s/template_pkg_node/$node_name/"      launch/default.launch  src/${pkg_name}.cpp
+    sed  -i  "s/template_pkg_name/$main_dir/"       src/${pkg_name}.cpp    include/${pkg_name}/${pkg_name}.hpp package.xml   src/${pkg_name}_node.cpp src/${pkg_name}.cpp
+    sed  -i  "s/template_pkg/$pkg_name/"            src/${pkg_name}.cpp    src/${pkg_name}_node.cpp
+    sed  -i  "s/node_name/$node_name/g"             CMakeLists.txt
+    sed  -i  "s/TemplatePkg/$class_name/g"          src/${pkg_name}.cpp    src/${pkg_name}_node.cpp                          include/${pkg_name}/${pkg_name}.hpp
 
     x=15
+
     for depend in ${depends[@]}
     do
-        sed -i "${x}i \ \ \ \ <depend>${depend}</depend>" package.xml
+        sed -i "${x}i \ \ \ \ <depend>${depend}</depend>"    package.xml
         ((x++))
     done
+
+    sed -i "s/email_id@ariitk.com/$(git config user.email)/" package.xml
+    sed -i "s/user_name/$(git config user.name)/"            package.xml
 
     cd ../
 
@@ -49,6 +78,7 @@ function create_package {
 # create_package
 
 length=${#pkg_names[@]}
+
 for ((counter=0; counter<$length; counter++))
 do 
     pkg_name=${pkg_names[$counter]}

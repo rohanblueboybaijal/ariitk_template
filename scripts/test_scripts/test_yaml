@@ -15,12 +15,12 @@ import subprocess
 if yaml.__version__ < "5.3.1" :
     os.system("pip3 install -U pyYAML > /dev/null")
 
-with open(r"cfg/config.yaml") as file:
+with open(r"../cfg/config.yaml") as file:
     yaml_file = yaml.load(file ,Loader=yaml.FullLoader)
 
     for item , value in yaml_file.items():
         command  =  item + "=(" + \
-                    " ".join(["'" + string.replace("\t\t\t","").replace("'","").replace("[","").replace("]","").strip() + "'" \
+                    " ".join(["'" + string.replace("\t","").replace("'","").replace("[","").replace("]","").strip() + "'" \
                     for string in value.strip().replace("-","").split("\n")]) \
                     + ")"
         print(command)
