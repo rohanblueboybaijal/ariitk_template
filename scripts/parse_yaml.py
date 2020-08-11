@@ -18,11 +18,11 @@ f = open(path+ "/config.sh","w+")
 f.write("#!usr/bin/env bash\n")
 with open(path + "/config.yaml") as file:
     yaml_file = yaml.load(file ,Loader=yaml.FullLoader)
-
     for item , value in yaml_file.items():
         command  =  item + "=(" + \
-                    " ".join(["'" + string.replace("\t","").replace("'","").replace("[","").replace("]","").strip() + "'" \
-                    for string in value.strip().replace("-","").split("\n")]) \
+                    " ".join(['"' + string.replace("\t","").replace("'","").replace("[","").replace("]","").strip() + '"' \
+                    for string in value.strip().split("-") \
+                    if string.strip()!= ""]) \
                     + ")"
         # subprocess.Popen(command, shell=True, executable='/bin/bash')
         f.write(command + "\n")

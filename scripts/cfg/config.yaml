@@ -4,7 +4,7 @@ directory_path: >
 workspace_name: >
       - ariitk_ws
 directory_name: >
-      - ariit_temp_pkg
+      - ariitk_temp_pkg
 pkg_names: >
       - temp_pkg1
       - temp_pkg2
