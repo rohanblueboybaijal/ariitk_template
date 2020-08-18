@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git clone --branch scripts git@github.com:rohanblueboybaijal/ariitk_template.git ~/.ariitk/ > /dev/null 2>&1
+git clone git@github.com:rohanblueboybaijal/ariitk_template.git ~/.ariitk/ > /dev/null 2>&1
 
 des="$HOME/.ariitk"
 cp -r ${des}/scripts/cfg/config.sh ${des}/config.sh
