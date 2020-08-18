@@ -21,7 +21,10 @@ The list of common repos and their links is available inside ariitk_rosinstall.
 # Without installation
 
 
-Use command `wget https://tinyurl.com/ariitk && chmod +x ariitk && ./ariitk && rm -rf ariitk` to create a meta package and setup git remote accordingly.You do not need to clone this package to run this command.
+Use command   
+`wget https://tinyurl.com/ariitk && chmod +x ariitk && ./ariitk && rm -rf ariitk`    
+to create a meta package and setup git remote accordingly. You do not need to clone this package to run this command.   
+Vim will open a text file and in that you should edit the directory paths, package names and dependencies as per your need.
 
 
 
